@@ -43,6 +43,7 @@ void APlayerChar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	playerUI->UpdateBars(Health, Hunger, Stamina);
 
 	// Building component placement
 	if (isBuilding)
@@ -68,8 +69,8 @@ void APlayerChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("Turn", this, &APlayerChar::AddControllerYawInput);
 	PlayerInputComponent->BindAction("JumpEvent", IE_Pressed, this, &APlayerChar::StartJump);
 	PlayerInputComponent->BindAction("JumpEvent", IE_Released, this, &APlayerChar::StopJump);
-	PlayerInputComponent->BindAction("RotPart", IE_Pressed, this, &APlayerChar::RotateBuilding); // Set to Q *
-	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &APlayerChar::FindObject); // Set to E *
+	PlayerInputComponent->BindAction("RotPart", IE_Pressed, this, &APlayerChar::RotateBuilding); // Set to Q
+	PlayerInputComponent->BindAction("Interact", IE_Pressed, this, &APlayerChar::FindObject); // Set to E
 
 }
 
@@ -217,7 +218,7 @@ void APlayerChar::GiveResource(float amount, FString resourceType)
 	}
 }
 
-void APlayerChar::UpdateResources(float woodAmount, float stoneAmount, FString buildingObject) // *
+void APlayerChar::UpdateResources(float woodAmount, float stoneAmount, FString buildingObject)
 {
 	if (woodAmount <= ResourcesArray[0])
 	{

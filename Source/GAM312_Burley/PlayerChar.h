@@ -15,7 +15,11 @@
 #include "Kismet/GameplayStatics.h"
 
 // Add BuildingPart reference
-#include "BuildingPart.h" // *
+#include "BuildingPart.h"
+
+// Add PlayerWidget class
+#include "PlayerWidget.h" // *
+
 #include "PlayerChar.generated.h"
 
 UCLASS()
@@ -92,7 +96,7 @@ public:
 
 
 	// Building creation tools
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Building Supplies") // *
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Building Supplies")
 		TArray<int> BuildingArray;
 
 	UPROPERTY()
@@ -102,7 +106,10 @@ public:
 		TSubclassOf<ABuildingPart> BuildPartClass;
 
 	UPROPERTY()
-		ABuildingPart* spawnedPart; // *
+		ABuildingPart* spawnedPart;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite) // *
+		UPlayerWidget* playerUI;
 
 
 	// Stat Functions
@@ -124,12 +131,12 @@ public:
 
 	// Building functions
 	UFUNCTION(BlueprintCallable)
-	void UpdateResources(float woodAmount, float stoneAmount, FString buildingObject); // *
+	void UpdateResources(float woodAmount, float stoneAmount, FString buildingObject);
 
 	UFUNCTION(BlueprintCallable)
 	void SpawnBuilding(int buildingID, bool& isSuccess);
 
 	UFUNCTION()
-	void RotateBuilding(); // *
+	void RotateBuilding();
 
 };
