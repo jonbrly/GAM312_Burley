@@ -18,7 +18,10 @@
 #include "BuildingPart.h"
 
 // Add PlayerWidget class
-#include "PlayerWidget.h" // *
+#include "PlayerWidget.h"
+
+// Add Objective Tracker
+#include "ObjectiveWidget.h"
 
 #include "PlayerChar.generated.h"
 
@@ -108,8 +111,19 @@ public:
 	UPROPERTY()
 		ABuildingPart* spawnedPart;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) // *
+	// Player UI
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UPlayerWidget* playerUI;
+
+	// Objective Tracker
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UObjectiveWidget* objWidget;
+
+	UPROPERTY()
+		float objectsBuilt;
+
+	UPROPERTY()
+		float matsCollected; // *
 
 
 	// Stat Functions
